@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import User, Room, RoomCombination, Reservation
 
-# Register your models here.
+
+admin.site.register(User)
+admin.site.register(Room)
+admin.site.register(RoomCombination)
+admin.site.register(Reservation)
