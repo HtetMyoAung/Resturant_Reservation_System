@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Table</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; background-color: #f4f4f4; }
+        .form-container { background: white; padding: 30px; border-radius: 8px; max-width: 400px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Restaurant Table Reservation</h2>
+    
+    <!-- ဧည့်သည် ဖြည့်စွက်ရမည့် Form ဖြစ်ပြီး POST စနစ်ဖြင့် View ဆီ ဒေတာပေးပို့ပါမည် -->
+    <form method="POST">
+        {% csrf_block %} <!-- လုံခြုံရေးအတွက် CSRF Token အမြဲထည့်ရပါမည် -->
+        
+        <div class="form-group">
+            <label for="reserved_date">Reservation Date:</label>
+            <input type="date" id="reserved_date" name="reserved_date" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="reserved_time">Reservation Time:</label>
+            <input type="time" id="reserved_time" name="reserved_time" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="number_of_guests">Number of Guests:</label>
+            <input type="number" id="number_of_guests" name="number_of_guests" min="1" required>
+        </div>
+        
+        <button type="submit">Submit Reservation</button>
+    </form>
+</div>
+
+</body>
+</html>
