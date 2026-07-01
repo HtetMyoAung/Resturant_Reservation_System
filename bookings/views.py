@@ -22,3 +22,7 @@ def create_reservation(request):
         return redirect('reservation_success')
 
     return render(request, 'bookings/create_reservation.html')
+
+
+def reservation_success(request):
+    return render(request, 'bookings/reservation_success.html')
