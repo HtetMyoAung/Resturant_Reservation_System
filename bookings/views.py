@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-# ၁။ ဒီလိုင်းကို ပေါင်းထည့်ပါ
 from django.contrib.auth.decorators import login_required
-from .models import Reservation
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from .models import User, Reservation
 
 
 @login_required
@@ -27,3 +28,24 @@ def create_reservation(request):
 @login_required
 def reservation_success(request):
     return render(request, 'bookings/reservation_success.html')
+
+
+def register(request):
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        phone_number = request.POST.get('phone_number')
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            phone_number=phone_number
+        )
+
+        login(request, user)
+        return redirect('create_reservation')
+
+    return render(request, 'bookings/register.html')
